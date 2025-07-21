@@ -1,66 +1,107 @@
-# LEO-Satellite-Network-Simulation
-#Hypatia - LEO Satellite Network Simulation Framework
-# Hypatia - LEO Satellite Network Simulation Framework
+# Hypatia
 
-## Overview
-Hypatia is a comprehensive Python-based simulation framework designed for modeling and analyzing Low Earth Orbit (LEO) satellite constellations such as Kuiper, Starlink, and Telesat. This framework enables researchers to simulate satellite network states and communication links, and to evaluate network performance under realistic conditions.
+Hypatia is a low earth orbit (LEO) satellite network simulation framework. It pre-calculates network state over time, enables packet-level simulations using ns-3 and provides visualizations to aid understanding.
 
-## Key Features
-- Simulation of satellite states and communication links (Ground-to-Satellite and Inter-Satellite links)
-- Support for multiple constellation models including Kuiper, Starlink, and Telesat
-- Integration with ns-3 simulator for network simulation and data analysis
-- Tools for satellite constellation state generation and visualization
+<a href="#"><img alt="Kuiper side-view" src="https://raw.githubusercontent.com/leosatsim/leosatsim.github.io/master/images/Kuiper_side_view.png" width="20%" /></a>
+<a href="#"><img alt="Telesat top-view" src="https://raw.githubusercontent.com/leosatsim/leosatsim.github.io/master/images/Telesat_top_view.png" width="20%" /></a>
+<a href="#"><img alt="starlink_paris_luanda_short" src="https://raw.githubusercontent.com/leosatsim/leosatsim.github.io/master/images/starlink_paris_luanda_short.png" width="10%" /></a>
 
-## System Requirements
-- Linux operating system (Ubuntu 18.04 or later recommended)
-- Python 3.7 or higher
-- ns-3 network simulator with required dependencies
-- Additional Python packages: numpy, exputil, matplotlib, and others (see `requirements.txt`)
+It consists of four main components:
 
-## Installation
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/hypatia.git
-## Navigate to the project directory:
-```bash
-cd hypatia
-## Install Python dependencies:
-```bash
-pip install -r requirements.txt
+* `satgenpy` : Python framework to generate LEO satellite networks and generate 
+  routing over time over a period of time. It additionally includes several 
+  analysis tools to study individual cases. It makes use of several Python modules
+  among which: numpy, astropy, ephem, networkx, sgp4, geopy, matplotlib, 
+  statsmodels, cartopy (and its dependent (data) packages: libproj-dev, proj-data,
+  proj-bin, libgeos-dev), and exputil.
+  More information can be found in `satgenpy/README.md`.
+  (license: MIT)
 
-## You can follow the documentation in the docs folder to build and install ns-3 modules.
+* `ns3-sat-sim` : ns-3 based framework which takes as input the state generated 
+  by `satgenpy` to perform packet-level simulations over LEO satellite networks.
+  It makes use of the [`satellite`](https://gitlab.inesctec.pt/pmms/ns3-satellite)
+  ns-3 module by Pedro Silva to calculate satellite locations over time.
+  It uses the [`basic-sim`](https://github.com/snkas/basic-sim/tree/3b32597c183e1039be7f0bede17d36d354696776) 
+  ns-3 module to make e.g., running end-to-end TCP flows easier, which makes use of several Python
+  modules (e.g., numpy, statsmodels, exputil) as well as several other packages (e.g., OpenMPI, lcov, gnuplot).
+  More information can be found in `ns3-sat-sim/README.md`.
+  (license: GNU GPL version 2)
+  
+* `satviz` : Cesium visualization pipeline to generate interactive satellite network
+  visualizations. It makes use of the online Cesium API by generating CesiumJS code.
+  The API calls require its user to obtain a Cesium access token (via [https://cesium.com/]()).
+  More information can be found in `satviz/README.md`.
+  (license: MIT)
 
+* `paper` : Experimental and plotting code to reproduce the experiments and 
+  figures which are presented in the paper.
+  It makes use of several Python modules among which: satgenpy, numpy, networkload, and exputil.
+  It uses the gnuplot package for most of its plotting.
+  More information can be found in `paper/README.md`.
+  (license: MIT)
+  
+(there is a fifth folder called `integration_tests` which is used for integration testing purposes)
 
-## Usage
-- Generate satellite constellation states using the provided Python scripts.
+This is the code repository introduced and used in "Exploring the “Internet from space” with Hypatia" 
+by Simon Kassing*, Debopam Bhattacherjee*, André Baptista Águas, Jens Eirik Saethre and Ankit Singla
+(*equal contribution), which is published in the Internet Measurement Conference (IMC) 2020.
 
-- Run network simulations via ns-3 integration modules.
+BibTeX citation:
+```
+@inproceedings {hypatia,
+    author = {Kassing, Simon and Bhattacherjee, Debopam and Águas, André Baptista and Saethre, Jens Eirik and Singla, Ankit},
+    title = {{Exploring the “Internet from space” with Hypatia}},
+    booktitle = {{ACM IMC}},
+    year = {2020}
+}
+```
 
-- Analyze and visualize simulation results with included plotting tools.
+## Getting started
 
-  ## Example Commands
-```bash
-python3 scripts/satellite_state_generator.py --constellation starlink
-./ns3 run hypatia-simulation
+1. System setup:
+   - Python version 3.7+
+   - Recent Linux operating system (e.g., Ubuntu 18+)
 
-## Results
-The framework supports visualization of satellite orbits, communication link quality, and network performance metrics.
+2. Install dependencies:
+   ```
+   bash hypatia_install_dependencies.sh
+   ```
+   
+3. Build all four modules (as far as possible):
+   ```
+   bash hypatia_build.sh
+   ```
+   
+4. Run tests:
+   ```
+   bash hypatia_run_tests.sh
+   ```
 
-## Challenges and Solutions
-Resolved compilation errors by patching ns-3 modules.
+5. The reproduction of the paper is essentially the tutorial for Hypatia.
+   Please navigate to `paper/README.md`.
 
-Optimized simulation runtime through event scheduling improvements.
+### Visualizations
+Most of the visualizations in the paper are available [here](https://leosatsim.github.io/).
+All of the visualizations can be regenerated using scripts available in `satviz` as discussed above.
 
-## References
-Hypatia GitHub Repository (original)
+Below are some examples of visualizations:
 
-Related research papers and documentation in the /docs folder
+- SpaceX Starlink 5-shell side-view (left) and top-view (right). To know the configuration of the shells, click [here](https://leosatsim.github.io/).
 
-## Contact
-Aqib Mushtaq 
-Email: aqibmushtaq2024@gmail.com
-LinkedIn: linkedin.com/in/aqib-mushtaq8
+  <a href="#"><img alt="Starlink side-view" src="https://raw.githubusercontent.com/leosatsim/leosatsim.github.io/master/images/Starlink_side_view.png" width="45%" /></a>
+  <a href="#"><img alt="Starlink top-view" src="https://raw.githubusercontent.com/leosatsim/leosatsim.github.io/master/images/Starlink_top_view.png" width="45%" /></a>
 
+- Amazon Kuiper 3-shell side-view (left) and top-view (right). To know the configuration of the shells, click [here](https://leosatsim.github.io/kuiper.html).
 
+  <a href="#"><img alt="Kuiper side-view" src="https://raw.githubusercontent.com/leosatsim/leosatsim.github.io/master/images/Kuiper_side_view.png" width="45%" /></a>
+  <a href="#"><img alt="Kuiper top-view" src="https://raw.githubusercontent.com/leosatsim/leosatsim.github.io/master/images/Kuiper_top_view.png" width="45%" /></a>
 
+- RTT changes over time between Paris and Luanda over Starlink 1st shell. Left: 117 ms, Right: 85 ms. Click on the images for 3D interactive visualizations.
 
+  <a href="https://leosatsim.github.io/starlink_550_path_Paris_1608_Luanda_1650_46800.html"><img alt="starlink_paris_luanda_long" src="https://raw.githubusercontent.com/leosatsim/leosatsim.github.io/master/images/starlink_paris_luanda_long.png" width="35%" /></a>
+  <a href="https://leosatsim.github.io/starlink_550_path_Paris_1608_Luanda_1650_139900.html"><img alt="starlink_paris_luanda_short" src="https://raw.githubusercontent.com/leosatsim/leosatsim.github.io/master/images/starlink_paris_luanda_short.png" width="35%" /></a>
+
+- Link utilizations change over time, even with the input traffic being static. For Kuiper 1st shell, path between Chicago and Zhengzhou at 10s (top) and 150s (bottom). Click on the images for 3D interactive visualizations.
+
+  <a href="https://leosatsim.github.io/kuiper_630_path_wise_util_Chicago_1193_Zhengzhou_1243_10000.html"><img alt="kuiper_Chicago_Zhengzhou_10s" src="https://raw.githubusercontent.com/leosatsim/leosatsim.github.io/master/images/kuiper_Chicago_Zhengzhou_10s.png" width="90%" /></a>
+  <a href="https://leosatsim.github.io/kuiper_630_path_wise_util_Chicago_1193_Zhengzhou_1243_150000.html"><img alt="kuiper_Chicago_Zhengzhou_150s" src="https://raw.githubusercontent.com/leosatsim/leosatsim.github.io/master/images/kuiper_Chicago_Zhengzhou_150s.png" width="90%" /></a>
