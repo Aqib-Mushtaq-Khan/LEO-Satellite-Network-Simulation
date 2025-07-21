@@ -22,9 +22,11 @@ Hypatia is a comprehensive Python-based simulation framework designed for modeli
    ```bash
    git clone https://github.com/yourusername/hypatia.git
 ## Navigate to the project directory:
+```bash
 cd hypatia
 
-## Install Python dependencies:
+Install Python dependencies:
+```bash
 pip install -r requirements.txt
 
 ## You can follow the documentation in the docs folder to build and install ns-3 modules.
@@ -38,4 +40,30 @@ pip install -r requirements.txt
 - Analyze and visualize simulation results with included plotting tools.
 
   ## Example Commands
+```bash
+python3 scripts/satellite_state_generator.py --constellation starlink
+./ns3 run hypatia-simulation
+
+## Results
+The framework supports visualization of satellite orbits, communication link quality, and network performance metrics.
+
+Challenges and Solutions
+Resolved compilation errors by patching ns-3 modules.
+
+Optimized simulation runtime through event scheduling improvements.
+
+References
+Hypatia GitHub Repository (original)
+
+Related research papers and documentation in the /docs folder
+
+Contact
+Aqib Mushtaq — Master’s Student and Research Engineer
+Email: aqibmushtaq2024@gmail.com
+LinkedIn: linkedin.com/in/aqib-mushtaq8
+
+yaml
+Copy
+
+
 
