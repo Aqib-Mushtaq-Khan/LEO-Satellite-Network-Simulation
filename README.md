@@ -3,7 +3,7 @@
 # Hypatia - LEO Satellite Network Simulation Framework
 
 ## Overview
-Hypatia is a comprehensive Python-based simulation framework designed for modeling and analyzing Low Earth Orbit (LEO) satellite constellations such as Kuiper, Starlink, and Telesat. This framework enables researchers to simulate satellite network states, communication links, and evaluate network performance under realistic conditions.
+Hypatia is a comprehensive Python-based simulation framework designed for modeling and analyzing Low Earth Orbit (LEO) satellite constellations such as Kuiper, Starlink, and Telesat. This framework enables researchers to simulate satellite network states and communication links, and to evaluate network performance under realistic conditions.
 
 ## Key Features
 - Simulation of satellite states and communication links (Ground-to-Satellite and Inter-Satellite links)
@@ -21,48 +21,21 @@ Hypatia is a comprehensive Python-based simulation framework designed for modeli
 1. Clone the repository:
    ```bash
    git clone https://github.com/yourusername/hypatia.git
-
-
-Navigate to the project directory:
-
-bash
-Copy
+## Navigate to the project directory:
 cd hypatia
-Install Python dependencies:
 
-bash
-Copy
+## Install Python dependencies:
 pip install -r requirements.txt
-Build and install ns-3 modules as per instructions in the docs folder.
 
-Usage
-Generate satellite constellation states using provided Python scripts.
+## You can follow the documentation in the docs folder to build and install ns-3 modules.
 
-Run network simulations using ns-3 integration modules.
 
-Analyze and visualize results with included plotting tools.
+## Usage
+- Generate satellite constellation states using the provided Python scripts.
 
-Example Commands
-bash
-Copy
-python3 scripts/satellite_state_generator.py --constellation starlink
-./ns3 run hypatia-simulation
-Results
-Includes detailed visualizations of satellite orbits, communication link quality, and network performance metrics.
+- Run network simulations via ns-3 integration modules.
 
-Challenges and Solutions
-Addressed compilation errors by patching ns-3 modules.
+- Analyze and visualize simulation results with included plotting tools.
 
-Optimized simulation runtime by refining event scheduling.
-
-References
-Hypatia GitHub Repository (original)
-
-Research papers and documentation provided in /docs
-
-Contact
-Aqib Mushtaq
-Email: aqibmushtaq2024@gmail.com
-LinkedIn: linkedin.com/in/aqib-mushtaq8
-
+  ## Example Commands
 
