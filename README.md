@@ -21,3 +21,48 @@ Hypatia is a comprehensive Python-based simulation framework designed for modeli
 1. Clone the repository:
    ```bash
    git clone https://github.com/yourusername/hypatia.git
+
+
+Navigate to the project directory:
+
+bash
+Copy
+cd hypatia
+Install Python dependencies:
+
+bash
+Copy
+pip install -r requirements.txt
+Build and install ns-3 modules as per instructions in the docs folder.
+
+Usage
+Generate satellite constellation states using provided Python scripts.
+
+Run network simulations using ns-3 integration modules.
+
+Analyze and visualize results with included plotting tools.
+
+Example Commands
+bash
+Copy
+python3 scripts/satellite_state_generator.py --constellation starlink
+./ns3 run hypatia-simulation
+Results
+Includes detailed visualizations of satellite orbits, communication link quality, and network performance metrics.
+
+Challenges and Solutions
+Addressed compilation errors by patching ns-3 modules.
+
+Optimized simulation runtime by refining event scheduling.
+
+References
+Hypatia GitHub Repository (original)
+
+Research papers and documentation provided in /docs
+
+Contact
+Aqib Mushtaq
+Email: aqibmushtaq2024@gmail.com
+LinkedIn: linkedin.com/in/aqib-mushtaq8
+
+
